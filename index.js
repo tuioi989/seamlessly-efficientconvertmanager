@@ -1,10 +1,10 @@
-const aliceBalanceAfter = await aptos.getAccountCoinsData({
-  accountAddress: aliceAddress,
-  minimumLedgerVersion: BigInt(response.version),
-});
-const bobBalanceAfter = await aptos.getAccountCoinsData({
-  accountAddress: bobAddress,
-});
-const sponsorBalanceAfter = await aptos.getAccountCoinsData({
-  accountAddress: sponsorAddress,
-});
+function rob(nums) {
+  let prevMax = 0;
+  let currMax = 0;
+  for (const num of nums) {
+    const temp = currMax;
+    currMax = Math.max(prevMax + num, currMax);
+    prevMax = temp;
+  }
+  return currMax;
+}
