@@ -1,21 +1,17 @@
-function addTwoNumbers(l1, l2) {
-  const dummy = new ListNode(0);
-  let p = l1,
-    q = l2,
-    curr = dummy;
-  let carry = 0;
-  while (p !== null || q !== null) {
-    const x = p !== null ? p.val : 0;
-    const y = q !== null ? q.val : 0;
-    const sum = x + y + carry;
-    carry = Math.floor(sum / 10);
-    curr.next = new ListNode(sum % 10);
-    curr = curr.next;
-    if (p !== null) p = p.next;
-    if (q !== null) q = q.next;
+function allPathsSourceTarget(graph) {
+  const result = [];
+  const target = graph.length - 1;
+  dfs(graph, 0, [0]);
+  function dfs(graph, node, path) {
+    if (node === target) {
+      result.push([...path]);
+      return;
+    }
+    for (const neighbor of graph[node]) {
+      path.push(neighbor);
+      dfs(graph, neighbor, path);
+      path.pop();
+    }
   }
-  if (carry > 0) {
-    curr.next = new ListNode(carry);
-  }
-  return dummy.next;
+  return result;
 }
